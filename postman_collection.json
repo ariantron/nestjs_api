@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "081e71b1-6679-44b4-8f49-16a6d37151c3",
+		"name": "Users Nest.js Web Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3846343"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\":\"Donald\",\r\n    \"last_name\":\"Trump\",\r\n    \"email\":\"trump@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/users",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Jessi\",\r\n    \"last_name\":\"Doe\",\r\n    \"email\":\"jessi@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7d-9i/nM7wo9cc88ykkDqabdhGDL6Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 06 Apr 2023 18:10:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"first_name\": \"Jessi\",\n    \"last_name\": \"Doe\",\n    \"email\": \"jessi@email.com\",\n    \"avatar\": \"avatar\",\n    \"_id\": \"642f0b1e67da9ceed5ae517f\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint}}/users/{{userId}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/users/{{userId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "134"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"86-NmlqpF0HpVDTqpiFeqC4GLFJReM\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 06 Apr 2023 18:54:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"email\": \"janet.weaver@reqres.in\",\n    \"first_name\": \"Janet\",\n    \"last_name\": \"Weaver\",\n    \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User Avatar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}/users/{{userId}}/avatar",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"avatar"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get User Avatar (First Call)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{endpoint}}/users/12/avatar",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"12",
+								"avatar"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-erTM+YQkGiOrbNdfNwaUuUBWEaI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Apr 2023 19:50:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"https://reqres.in/img/faces/12-image.jpg\"\n}"
+				},
+				{
+					"name": "Get User Avatar",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{endpoint}}/users/12/avatar",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"12",
+								"avatar"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3619"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e23-2TlJRrGZbPd3Ixet64KOD4Czj7o\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Apr 2023 19:50:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAICgAwAEAAAAAQAAAFUAAAAA/+0AOFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/CABEIAFUAgAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAADAgQBBQAGBwgJCgv/xADDEAABAwMCBAMEBgQHBgQIBnMBAgADEQQSIQUxEyIQBkFRMhRhcSMHgSCRQhWhUjOxJGIwFsFy0UOSNIII4VNAJWMXNfCTc6JQRLKD8SZUNmSUdMJg0oSjGHDiJ0U3ZbNVdaSVw4Xy00Z2gONHVma0CQoZGigpKjg5OkhJSldYWVpnaGlqd3h5eoaHiImKkJaXmJmaoKWmp6ipqrC1tre4ubrAxMXGx8jJytDU1dbX2Nna4OTl5ufo6erz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAECAAMEBQYHCAkKC//EAMMRAAICAQMDAwIDBQIFAgQEhwEAAhEDEBIhBCAxQRMFMCIyURRABjMjYUIVcVI0gVAkkaFDsRYHYjVT8NElYMFE4XLxF4JjNnAmRVSSJ6LSCAkKGBkaKCkqNzg5OkZHSElKVVZXWFlaZGVmZ2hpanN0dXZ3eHl6gIOEhYaHiImKkJOUlZaXmJmaoKOkpaanqKmqsLKztLW2t7i5usDCw8TFxsfIycrQ09TV1tfY2drg4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAKCgoKCwoMDQ0MEBEPERAYFhQUFhgkGhwaHBokNiIoIiIoIjYwOi8sLzowVkQ8PERWZFRPVGR5bGx5mJGYx8f//9sAQwEKCgoKCwoMDQ0MEBEPERAYFhQUFhgkGhwaHBokNiIoIiIoIjYwOi8sLzowVkQ8PERWZFRPVGR5bGx5mJGYx8f//9oADAMBAAIRAxEAAAF8K5QsN41eNIaP8Q0dpaisNz5o3WauiI0xUaYgGYVGEigTtKhGLyF9xyMZNm8D0fc8B2RWz2h00TFN5002JoBdIQiucpnrBNOgftSJpznQUVi2fUmDOuRJbTCV6YzomlVztqjj5rsKkzWWWx6Wd/VdXpgl9S3BTIXDpG01pmIsoEnn2ssgu+XCj646tkFAQysqOxye1Tk74qmJpQ1jDVykr59nc5O+KkKSbRChUD1q4x2uNMdHP//aAAgBAQABBQLlgkgoEBqlqSFp5NE54sfzIQkFceTijw+4UguvLZvWm9Q0TRr/AJgnuHVzymSQ9o1UljVVP3lcQep8HNLhEhxICmY00k6VQK+6NexyqkdTIq75bDt1jFRAExqq2P0VafcAoGqtEGrWgqGqUyoVIRxjjSAtOSpkBJsz0J1T2yev3ZuEaBS4j5cyZKITIFGdVVQxYRxK/mCWdWkO9RWOKYJclwl28XNlXw/mCeoHVnVzx8pcUK5lIQmNK3VxryH3i1OvaeFMoQlKEtfAqcH3ley/J17ebPUCKKtzVR7f/9oACAEDEQE/AbTrXeHYkcHtGlF9e0fmg8u6G3xz+bI/cyHPZXGm7j+qPIZjjUeR2n8P+bT/2gAIAQIRAT8BMUeNb7y7m+R2k6+nbI+iRw0UD7SwPHZfOm3lPgsD92p8HtH4/wDPp//aAAgBAQAGPwLTgXj3oXQFjLj/ADh+5q9T0vQPV6H+dKfyjtVj9f8AM07lXavk+Hb5/fDJ7hHYDvGfh9/TtxerKmGH9joGoehY/mT2+BYONX59h8nT+by/ZdC+l1Psp4/z2Pl5OieHmXiO/wAv5kdhXydEig+4f56hdH9nf//EADMQAQADAAICAgICAwEBAAACCwERACExQVFhcYGRobHB8NEQ4fEgMEBQYHCAkKCwwNDg/9oACAEBAAE/IYeVGnWcbm+GzFeBjTYJOKQBaqn/APJdIc0R7qH2uWSzPF4dVS4BM3kqjxfF4B//ABzYCzxerCMvCbNbWPlsY8FFiXmq0yWPabBvff8A+Pg2yej/AJMIsndGfPVlGuvNFkf7f8YJ/W/ih9Cf/wAKhJWa5UZ/wixQE2eJ9tWXhF+H+buroRZ5HEPxl0szZ/4UX/EFC/esAIVwKgc+LxKpRtGF4KJcFR+I/dgyo8l2ZsisqFgoHj/jU/UWJIvAGClRBDyPFUwT92Z9f1We8omwfL/mWCn/AOCPCmFiLHHlz9d0OHGlIMtWI0n2fF5aMRH/AORtvEaUARqr8nwvDQcnVAjh+6srCbzPP/4jgtXdniUQB57/AOC2FSJQxAqzcz9lmfRcvws//hev+Fmw+qKWzJTpZ1yghKbdRqSeVR/z/9oADAMBAAIRAxEAABB9S39g2SHhtGu2GRRRwCyFGmeRyxgVC0tXScJPDttUjuKghav/xAAzEQEBAQADAAECBQUBAQABAQkBABEhMRBBUWEgcfCRgaGx0cHh8TBAUGBwgJCgsMDQ4P/aAAgBAxEBPxA5m9WNc8DbVmeMWeDC0m6XAfI/g+IanNnx8wBnzI7HtJMW59Kfws9tkt/kf6tTn1stfX8AOH2niQn91z/OtG/T3+ovie/OrnTf/9oACAECEQE/EOFzhigHvPFzux94R/Bvi1+xYPiOR8PH4M57sB44t4lF34nqnww6D+AFB9bWiZlht9LTH0/BrT94dIx9l/TSAPr7/SR2+vVxHj//2gAIAQEAAT8Q6BH4rWJ0oCT2il6oDkYRqGJu315sah1VxL/+NP8AkA55VgjHSqCyqW6oBQCiMV82b9wHT1YOQFKgveBY+Ymwgxfdf/wNFsyyslJyqEp8WKSyoGuCkBklHRz9FQHHQea0ossM6Cs8CKMBj8jZKZGfI/4/8aFgsyFwOnmyplIN9erBkRtDswjzwH22YaIq8rq1vAlAdw7WvZ04fFnpq4h3KaoASCPxcq/8afQTYHLBk5Q+q3QICPdATP8AxUuMDF8cVwx2ofBcDYNTY+GJXbLeAJWmoQPSj/E3wkFven8VQyyWAEsZjuzNMAgq1rRQyKUiWQLPmhF+aVOGgc+jmamxF/AonpB/LT0RQnzWk6DJxm9fBgateJPgZf3NcNliH5KIgROrL+LbAcmhCHLlvNgo2QTZpPnf3ZZEHFxoPlOdPzXoYhEY8zXMQNhn5FCml4UfWmmDDh9u/wB2RJzh81ai6sc5NFmnN2a6m2JbFD2E/VgCuL5n5/05sySWJsfNVoVgyCbtUJOg0/LWxIOqqXRqqC+LGVo0LF2yfg/FB4DTBRIESEexsFNy/lvH1xekHhSS2Pa+LHqmV7TqvtsjPigF4f28VmFMA+zq8FkihT/i9ITWl7DNEl6wliRYEjifX/GLQeSDs+yieDA8+V7Xz/wa/Q/dmA1Py+K0byl/dadpSlY/DXumQOwJvqk+w/V+AFNDfoTTNDC64DJJyeyixVZL3HmmV6F8TFL/AP/Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete User Avatar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint}}/users/{{userId}}/avatar",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"avatar"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete User Avatar",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/users/12/avatar",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"12",
+								"avatar"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"59-amVRCa7RkOx/+dYbIFTcgT51I3M\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Apr 2023 19:49:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"File and database record of user (userId=12) avatar image has been removed.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Hello",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}",
+							"host": [
+								"{{endpoint}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Apr 2023 08:33:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Hello World!"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "localhost:port/api",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "2",
+			"type": "string"
+		}
+	]
+}
