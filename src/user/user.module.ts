@@ -34,16 +34,18 @@ import { ImageModule } from '../image/image.module';
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => ({
         transport: {
-          host: config.get<string>('EMAIL_HOST'),
-          port: config.get<number>('EMAIL_PORT'),
+          host: config.get<string>('MAIL_HOST'),
+          port: config.get<number>('MAIL_PORT'),
+          ignoreTLS: config.get<boolean>('MAIL_IGNORE_TLS'),
+          secure: config.get<boolean>('MAIL_SECURE'),
           auth: {
-            user: config.get<string>('EMAIL_ID'),
-            pass: config.get<string>('EMAIL_PASS'),
+            user: config.get<string>('MAIL_USERNAME'),
+            pass: config.get<string>('EMAIL_PASSWORD'),
           },
         },
         defaults: {
-          from: `${config.get<string>('EMAIL_ID')}@
-          ${config.get<string>('EMAIL_HOST')}`,
+          from: `"${config.get<string>('MAIL_FROM_NAME')}"
+                  <${config.get<string>('MAIL_FROM_ADDRESS')}>`,
         },
       }),
     }),
