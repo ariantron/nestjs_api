@@ -3,12 +3,12 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.schema';
 import { Model } from 'mongoose';
-import { MailService } from '../mail.service';
+import { MailService } from '../../common/services/mail.service';
 import { ClientProxy } from '@nestjs/microservices';
-import * as https from 'https';
 import * as fs from 'fs';
-import * as path from 'path';
 import { ImageService } from '../image/image.service';
+import { downloadFile } from '../../common/utills/download.utill';
+import UserConfig from './user.config';
 
 @Injectable()
 export class UserService {
@@ -22,13 +22,22 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const newUser = new this.userModel(createUserDto);
     const userName = newUser.first_name + ' ' + newUser.last_name;
-    await this.mailService.sendMail(newUser.email, userName);
+    const subject = 'New user account';
+    const text = 'Your account has been successfully created.';
+    const html = '<h2>Your account has been successfully created.</h2>';
+    await this.mailService.sendMail(
+      newUser.email,
+      userName,
+      subject,
+      text,
+      html,
+    );
     this.client.emit('user-created', newUser.toJSON());
     return await newUser.save();
   }
 
   async findOne(id: string): Promise<User> {
-    const response = await fetch(`https://reqres.in/api/users/${id}`, {
+    const response = await fetch(UserConfig.users_api_url + id, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -41,7 +50,7 @@ export class UserService {
   async findOneAvatar(id: string) {
     const avatar = await this.imageService.findOne(id);
     if (avatar) return (await avatar).image;
-    const response = await fetch(`https://reqres.in/api/users/${id}`, {
+    const response = await fetch(UserConfig.users_api_url + id, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -50,7 +59,7 @@ export class UserService {
     if (!response.ok) throw new Error(`Error! status: ${response.status}`);
     const avatarUrl = (await response.json()).data.avatar;
     let image = null;
-    this.downloadFile(avatarUrl, async (imageFilePath) => {
+    downloadFile(avatarUrl, async (imageFilePath) => {
       image = fs.readFileSync(imageFilePath, 'base64');
       await this.imageService.save(id, image);
     });
@@ -60,21 +69,5 @@ export class UserService {
 
   async deleteAvatar(id: string) {
     return await this.imageService.delete(id);
-  }
-
-  downloadFile(url, callback) {
-    const filename = path.basename(url);
-    const downloadsDir = 'downloads';
-    if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
-    const filePath = `${downloadsDir}/${filename}`;
-    https.get(url, (res) => {
-      const fileStream = fs.createWriteStream(filePath);
-      res.pipe(fileStream);
-      fileStream.on('finish', () => {
-        fileStream.close();
-        callback(filePath);
-      });
-    });
-    return filePath;
   }
 }

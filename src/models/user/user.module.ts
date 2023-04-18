@@ -6,7 +6,7 @@ import { UserSchema } from './user.schema';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { MailService } from '../mail.service';
+import { MailService } from '../../common/services/mail.service';
 import { ImageModule } from '../image/image.module';
 
 @Module({

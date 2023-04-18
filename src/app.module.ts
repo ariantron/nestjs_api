@@ -3,9 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MailService } from './mail.service';
-import { UserModule } from './user/user.module';
-import { ImageModule } from './image/image.module';
+import { MailService } from './common/services/mail.service';
+import { UserModule } from './models/user/user.module';
+import { ImageModule } from './models/image/image.module';
 
 @Module({
   imports: [

@@ -6,7 +6,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserSchema } from './user.schema';
-import { MailService } from '../mail.service';
+import { MailService } from '../../common/services/mail.service';
 import { ImageService } from '../image/image.service';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Model } from 'mongoose';
