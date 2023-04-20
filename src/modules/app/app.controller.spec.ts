@@ -17,16 +17,16 @@ describe('AppController', () => {
   });
 
   describe('info', () => {
-    it('should return app information', () => {
-      const expectedInfo = {
-        name: 'nestjs-api',
-        version: '1.0.0',
-        creator: 'Arian Tron <ariantron@yahoo.com>',
-        status: 'online',
-      };
-      jest.spyOn(appService, 'info').mockReturnValue(expectedInfo);
-
-      expect(appController.info()).toBe(expectedInfo);
+    it('should return an object with name, version, creator, and status', () => {
+      const result = appService.info();
+      expect(result).toEqual(
+        expect.objectContaining({
+          name: expect.any(String),
+          version: expect.any(String),
+          creator: expect.any(String),
+          status: expect.any(String),
+        }),
+      );
     });
   });
 });

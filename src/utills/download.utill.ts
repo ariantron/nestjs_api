@@ -2,9 +2,8 @@ import path from 'path';
 import fs from 'fs';
 import https from 'https';
 
-export function downloadFile(url, callback) {
+export function downloadFile(url, downloadsDir, callback) {
   const filename = path.basename(url);
-  const downloadsDir = 'downloads';
   if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
   const filePath = `${downloadsDir}/${filename}`;
   https.get(url, (res) => {
