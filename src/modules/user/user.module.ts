@@ -8,27 +8,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailService } from '../../common/services/mail.service';
 import { ImageModule } from '../image/image.module';
+import { GlobalConstants } from "../../common/constants/global";
+import { RabbitMQModule } from "../rmq/rmq.module";
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-    ClientsModule.registerAsync([
-      {
-        name: 'RMQ_SERVICE',
-        imports: [ConfigModule],
-        useFactory: async (configService: ConfigService) => ({
-          transport: Transport.RMQ,
-          options: {
-            queue: configService.get<string>('RMQ_PRODUCER_QUEUE'),
-            urls: [configService.get<string>('RMQ_PRODUCER_URL')],
-            queueOptions: {
-              durable: configService.get<boolean>('RMQ_PRODUCER_QUEUE_DURABLE'),
-            },
-          },
-        }),
-        inject: [ConfigService],
-      },
-    ]),
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -50,6 +35,7 @@ import { ImageModule } from '../image/image.module';
       }),
     }),
     ImageModule,
+    RabbitMQModule
   ],
   controllers: [UserController],
   providers: [UserService, MailService],
