@@ -2,11 +2,19 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class Image {
-  @Prop()
+  @Prop({
+    required: true,
+  })
   id: string;
-  @Prop()
+
+  @Prop({
+    required: true,
+  })
   user_id: string;
-  @Prop()
+
+  @Prop({
+    required: true,
+  })
   image: string;
 }
 

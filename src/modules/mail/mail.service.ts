@@ -5,25 +5,20 @@ import { Injectable } from '@nestjs/common';
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async send(
-    email: string,
-    name: string,
-    subject: string,
-    text: string,
-    html: string,
-  ) {
+  async sendAccountCreationNotification(email: string, name: string) {
     try {
       await this.mailerService.sendMail({
         to: email,
-        subject: subject,
-        text: text, // plaintext body
-        html: html, // HTML body content
+        subject: 'New user account',
+        template: './success',
         context: {
           name: name,
         },
       });
-    } catch (err) {
-      console.log(`Send Email Error [${err}]`);
+    } catch (error) {
+      console.log(
+        `Send Account Creation Notification email to <${email}> has failed.\r\n${error}`,
+      );
     }
   }
 }

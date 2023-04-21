@@ -18,8 +18,9 @@ export class UserController {
 
   @Post()
   @EventPattern('user-created')
-  async create(@Body() createUserDto: CreateUserDto) {
-    return await this.userService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto, @Res() response) {
+    const res = await this.userService.create(createUserDto);
+    return response.status(res.statusCode).json(res);
   }
 
   @Get('/:id')

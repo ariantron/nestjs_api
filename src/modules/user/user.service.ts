@@ -9,6 +9,8 @@ import UserConfig from './user.config';
 import { MailService } from '../mail/mail.service';
 import { RabbitMQService } from '../rmq/rmq.service';
 import { downloadFile } from 'src/utills/download.utill';
+import { HttpStatusCode } from 'axios';
+import { ApiResponse } from '../../config/api.response';
 
 @Injectable()
 export class UserService {
@@ -21,19 +23,43 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto) {
     const newUser = new this.userModel(createUserDto);
-    const userName = newUser.first_name + ' ' + newUser.last_name;
-    const subject = 'New user account';
-    const text = 'Your account has been successfully created.';
-    const html = '<h2>Your account has been successfully created.</h2>';
-    await this.mailService.send(
-      newUser.email,
-      userName,
-      subject,
-      text,
-      html,
-    );
-    this.rabbitMQService.send('user-created', newUser.toJSON());
-    return await newUser.save();
+    const isDuplicatedEmail =
+      (await this.userModel.exists({
+        email: newUser.email,
+      })) !== null;
+    if (isDuplicatedEmail) {
+      return new ApiResponse(
+        HttpStatusCode.BadRequest,
+        'Bad Request',
+        null,
+        'email should be unique',
+      );
+    }
+    newUser
+      .save()
+      .then(async (res) => {
+        const userName = newUser.first_name + ' ' + newUser.last_name;
+        await this.mailService.sendAccountCreationNotification(
+          newUser.email,
+          userName,
+        );
+        this.rabbitMQService.send('user-created', newUser.toJSON());
+        return new ApiResponse(
+          HttpStatusCode.Ok,
+          'User information has been successfully saved in the database.',
+          res,
+          null,
+        );
+      })
+      .catch((error) => {
+        console.log(`Save user to database has failed.\r\n${error}`);
+        return new ApiResponse(
+          HttpStatusCode.ServiceUnavailable,
+          'Database is down',
+          null,
+          'Service Unavailable',
+        );
+      });
   }
 
   async findOne(id: string): Promise<User> {

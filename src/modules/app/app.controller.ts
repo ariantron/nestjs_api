@@ -10,7 +10,7 @@ export class AppController {
   @Get('/')
   @HttpCode(HttpStatusCode.Found)
   index(@Res() res: Response) {
-    res.redirect('/status');
+    res.redirect('/api/status');
   }
   @Get('/status')
   @HttpCode(HttpStatusCode.Ok)
