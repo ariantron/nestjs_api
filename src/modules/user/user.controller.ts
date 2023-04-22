@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
   Param,
   Post,
   Res,
@@ -24,20 +23,20 @@ export class UserController {
   }
 
   @Get('/:id')
-  async findOne(@Res() response, @Param('id') id: string) {
-    const user = await this.userService.findOne(id);
-    return response.status(HttpStatus.OK).json(user);
+  async findOne(@Param('id') id: string, @Res() response) {
+    const res = await this.userService.findOne(id);
+    return response.status(res.statusCode).json(res);
   }
 
   @Get('/:id/avatar')
-  async findOneAvatar(@Res() response, @Param('id') id: string) {
-    const avatar = await this.userService.findOneAvatar(id);
-    return response.status(HttpStatus.OK).json({ data: avatar });
+  async findOneAvatar(@Param('id') id: string, @Res() response) {
+    const res = await this.userService.findOneAvatar(id);
+    return response.status(res.statusCode).json(res);
   }
 
   @Delete('/:id/avatar')
-  async deleteAvatar(@Res() response, @Param('id') id: string) {
-    const result = await this.userService.deleteAvatar(id);
-    return response.status(HttpStatus.OK).json(result);
+  async deleteAvatar(@Param('id') id: string, @Res() response) {
+    const res = await this.userService.deleteAvatar(id);
+    return response.status(res.statusCode).json(res);
   }
 }

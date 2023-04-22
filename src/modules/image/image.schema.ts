@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class Image {
   @Prop({
-    required: true,
+    required: false,
   })
   id: string;
 

@@ -12,7 +12,9 @@ export class ImageService {
 
   async save(userId: string, image: string) {
     const newImage = new this.imageModel({ user_id: userId, image: image });
-    return await newImage.save();
+    await newImage.save().catch((error) => {
+      console.log(`Saving user image in the database failed! [${error}]`);
+    });
   }
 
   async findOne(userId: string) {
@@ -23,8 +25,5 @@ export class ImageService {
     const filePath = `downloads/${userId}-image.jpg`;
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
     await this.imageModel.deleteMany({ user_id: userId }).exec();
-    return {
-      message: `File and database record of user (userId=${userId}) avatar image has been removed.`,
-    };
   }
 }

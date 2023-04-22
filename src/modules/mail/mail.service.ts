@@ -15,9 +15,12 @@ export class MailService {
           name: name,
         },
       });
+      console.log(
+        `Send account creation notification email to <${email}> has succeed!`,
+      );
     } catch (error) {
       console.log(
-        `Send Account Creation Notification email to <${email}> has failed.\r\n${error}`,
+        `Send account creation notification email to <${email}> has failed! [${error}]`,
       );
     }
   }

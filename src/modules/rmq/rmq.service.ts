@@ -5,7 +5,25 @@ import { ClientProxy } from '@nestjs/microservices';
 export class RabbitMQService {
   constructor(@Inject('RMQ_MODULE') private readonly client: ClientProxy) {}
 
-  public send(pattern: string, data: any) {
-    return this.client.emit(pattern, data);
+  public async sendAccountCreationEvent(
+    pattern: string,
+    email: string,
+    data: any,
+  ) {
+    await this.client
+      .emit(pattern, data)
+      .toPromise()
+      .then((res) => {
+        console.log(
+          `Send account creation event for user <${email}> has succeed!`,
+        );
+      })
+      .catch((error) => {
+        console.log(
+          `Send account creation event for user <${email}> has failed! [${JSON.stringify(
+            error,
+          )}]`,
+        );
+      });
   }
 }
