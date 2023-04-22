@@ -1,6 +1,6 @@
 export interface Response {
-  statusCode: number;
-  message: string | string[];
+  readonly statusCode: number;
+  readonly message: string | string[];
   readonly data?: any;
   readonly error?: string;
 }
