@@ -7,13 +7,76 @@
 	},
 	"item": [
 		{
+			"name": "Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint}}",
+					"host": [
+						"{{endpoint}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Info",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}",
+							"host": [
+								"{{endpoint}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"66-4eIlNol5DxRlwr+TSq4Dhy6uXQs\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 21 Apr 2023 07:33:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"nestjs-api\",\n    \"version\": \"1.0.0\",\n    \"creator\": \"Arian Tron <ariantron@yahoo.com>\",\n    \"status\": \"online\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Create User",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"first_name\":\"Donald\",\r\n    \"last_name\":\"Trump\",\r\n    \"email\":\"trump@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
+					"raw": "{\r\n    \"first_name\":\"Jessi\",\r\n    \"last_name\":\"Doe\",\r\n    \"email\":\"jessi.doe@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"Jessi\",\r\n    \"last_name\":\"Doe\",\r\n    \"email\":\"jessi@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"John\",\r\n    \"last_name\":\"Doe\",\r\n    \"email\":\"john.doe@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,8 +118,8 @@
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -69,15 +132,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "125"
+							"value": "240"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"7d-9i/nM7wo9cc88ykkDqabdhGDL6Y\""
+							"value": "W/\"f0-ccNew2dgGuX/Y63R3bQm19SQBHs\""
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 06 Apr 2023 18:10:38 GMT"
+							"value": "Sat, 22 Apr 2023 15:15:06 GMT"
 						},
 						{
 							"key": "Connection",
@@ -89,7 +152,67 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"first_name\": \"Jessi\",\n    \"last_name\": \"Doe\",\n    \"email\": \"jessi@email.com\",\n    \"avatar\": \"avatar\",\n    \"_id\": \"642f0b1e67da9ceed5ae517f\",\n    \"__v\": 0\n}"
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"User information has been successfully saved in the database!\",\n    \"data\": {\n        \"newUser\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",\n            \"email\": \"john.doe@email.com\",\n            \"avatar\": \"avatar\",\n            \"_id\": \"6443f9faee2c8b422414359a\",\n            \"__v\": 0\n        }\n    }\n}"
+				},
+				{
+					"name": "Create User (Bad Request)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"John\",\r\n    \"last_name\":\"Doe\",\r\n    \"email\":\"john.doe@email.com\",\r\n    \"avatar\":\"avatar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4b-urIh41jcT5WUKWmBPe+IAq4Vtjs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 22 Apr 2023 15:15:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"email should be unique\"\n}"
 				}
 			]
 		},
@@ -140,15 +263,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "134"
+							"value": "221"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"86-NmlqpF0HpVDTqpiFeqC4GLFJReM\""
+							"value": "W/\"dd-xI0XDK9yLYlz7PT/mz7vdKxyrko\""
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 06 Apr 2023 18:54:45 GMT"
+							"value": "Sat, 22 Apr 2023 15:17:37 GMT"
 						},
 						{
 							"key": "Connection",
@@ -160,7 +283,59 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 2,\n    \"email\": \"janet.weaver@reqres.in\",\n    \"first_name\": \"Janet\",\n    \"last_name\": \"Weaver\",\n    \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n}"
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"User information received successfully!\",\n    \"data\": {\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"janet.weaver@reqres.in\",\n            \"first_name\": \"Janet\",\n            \"last_name\": \"Weaver\",\n            \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n        }\n    }\n}"
+				},
+				{
+					"name": "Get User (Not Found)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/users/500",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"500"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "132"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"84-Ho9pU+w/IzQuMU/qasTl1j51I6A\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 22 Apr 2023 15:18:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"Failed to get user information! [AxiosError: Request failed with status code 404]\"\n}"
 				}
 			]
 		},
@@ -190,63 +365,6 @@
 			},
 			"response": [
 				{
-					"name": "Get User Avatar (First Call)",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{endpoint}}/users/12/avatar",
-							"host": [
-								"{{endpoint}}"
-							],
-							"path": [
-								"users",
-								"12",
-								"avatar"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "51"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"33-erTM+YQkGiOrbNdfNwaUuUBWEaI\""
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 07 Apr 2023 19:50:16 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": \"https://reqres.in/img/faces/12-image.jpg\"\n}"
-				},
-				{
 					"name": "Get User Avatar",
 					"originalRequest": {
 						"method": "GET",
@@ -256,13 +374,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{endpoint}}/users/12/avatar",
+							"raw": "{{endpoint}}/users/{{userId}}/avatar",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"users",
-								"12",
+								"{{userId}}",
 								"avatar"
 							]
 						}
@@ -281,15 +399,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "3619"
+							"value": "4636"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"e23-2TlJRrGZbPd3Ixet64KOD4Czj7o\""
+							"value": "W/\"121c-Qu9XYRKUlgQBde0ViOt4rWMZOLc\""
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 07 Apr 2023 19:50:47 GMT"
+							"value": "Sat, 22 Apr 2023 15:33:13 GMT"
 						},
 						{
 							"key": "Connection",
@@ -301,7 +419,64 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": \"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\"\n}"
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Avatar received successfully\",\n    \"data\": {\n        \"userId\": \"2\",\n        \"imageUrl\": \"https://reqres.in/api/users/2\",\n        \"base64EncodedImage\": \"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\"\n    }\n}"
+				},
+				{
+					"name": "Get User Avatar (Not Found)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{endpoint}}/users/500/avatar",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"users",
+								"500",
+								"avatar"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7f-4ygMivW6DXz+e3tqUbofAFVwxhw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 22 Apr 2023 15:37:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"Failed to get user avatar! [AxiosError: Request failed with status code 404]\"\n}"
 				}
 			]
 		},
@@ -329,13 +504,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{endpoint}}/users/12/avatar",
+							"raw": "{{endpoint}}/users/{{userId}}/avatar",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"users",
-								"12",
+								"{{userId}}",
 								"avatar"
 							]
 						}
@@ -354,15 +529,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "89"
+							"value": "99"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"59-amVRCa7RkOx/+dYbIFTcgT51I3M\""
+							"value": "W/\"63-DVo6K7ZDWZA5+drSmlx+MoFfwr8\""
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 07 Apr 2023 19:49:57 GMT"
+							"value": "Sat, 22 Apr 2023 15:36:41 GMT"
 						},
 						{
 							"key": "Connection",
@@ -374,70 +549,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"File and database record of user (userId=12) avatar image has been removed.\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Hello",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{endpoint}}",
-					"host": [
-						"{{endpoint}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Hello",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{endpoint}}",
-							"host": [
-								"{{endpoint}}"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "12"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 07 Apr 2023 08:33:50 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "Hello World!"
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"User avatar removed successfully!\",\n    \"data\": {\n        \"deletedAvatarUserId\": \"2\"\n    }\n}"
 				}
 			]
 		}
