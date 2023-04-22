@@ -13,7 +13,7 @@ export class RabbitMQService {
     await this.client
       .emit(pattern, data)
       .toPromise()
-      .then((res) => {
+      .then(() => {
         console.log(
           `Send account creation event for user <${email}> has succeed!`,
         );

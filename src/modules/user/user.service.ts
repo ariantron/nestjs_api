@@ -8,7 +8,7 @@ import { ImageService } from '../image/image.service';
 import UserConfig from './user.config';
 import { MailService } from '../mail/mail.service';
 import { RabbitMQService } from '../rmq/rmq.service';
-import { downloadFile } from 'src/utills/download.utill';
+import { downloadFile } from '../../utills/download.utill';
 import axios, { HttpStatusCode } from 'axios';
 import { Response } from '../../interfaces/response.interface';
 import { errorResponse, successResponse } from '../../utills/response.utill';
@@ -45,7 +45,7 @@ export class UserService {
         );
         return successResponse(
           'User information has been successfully saved in the database!',
-          res,
+          { newUser: res },
         );
       })
       .catch((error) => {
@@ -68,10 +68,9 @@ export class UserService {
       },
     })
       .then(async (res) => {
-        return successResponse(
-          'User information received successfully!',
-          res.data.data,
-        );
+        return successResponse('User information received successfully!', {
+          user: res.data.data,
+        });
       })
       .catch((error) => {
         try {
@@ -90,14 +89,16 @@ export class UserService {
 
   async findOneAvatar(id: string): Promise<Response> {
     const avatar = await this.imageService.findOne(id);
+    const avatarUrl = UserConfig.USERS_API_URL + id;
     if (avatar)
-      return successResponse(
-        'Avatar received successfully',
-        (await avatar).image,
-      );
+      return successResponse('Avatar received successfully', {
+        userId: id,
+        imageUrl: avatarUrl,
+        base64EncodedImage: (await avatar).image,
+      });
     return await axios({
       method: 'GET',
-      url: UserConfig.USERS_API_URL + id,
+      url: avatarUrl,
       headers: {
         Accept: 'application/json',
       },
@@ -108,7 +109,11 @@ export class UserService {
           .then(async (imageFilePath) => {
             const image = fs.readFileSync(imageFilePath, 'base64');
             await this.imageService.save(id, image);
-            return successResponse('User avatar received successfully!', image);
+            return successResponse('User avatar received successfully!', {
+              userId: id,
+              imageUrl: avatarUrl,
+              base64EncodedImage: image,
+            });
           })
           .catch((error) => {
             return errorResponse(
@@ -135,7 +140,9 @@ export class UserService {
   async deleteAvatar(id: string) {
     try {
       await this.imageService.delete(id);
-      return successResponse('User avatar removed successfully!', id);
+      return successResponse('User avatar removed successfully!', {
+        deletedAvatarUserId: id,
+      });
     } catch (error) {
       return errorResponse(
         HttpStatusCode.InternalServerError,
