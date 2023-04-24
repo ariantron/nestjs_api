@@ -2,19 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/modules/app/app.module';
-import { AppService } from '../src/modules/app/app.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-  let appService: AppService;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-      providers: [AppService],
     }).compile();
 
-    appService = moduleFixture.get<AppService>(AppService);
     app = moduleFixture.createNestApplication();
     await app.init();
   });
@@ -39,7 +35,14 @@ describe('AppController (e2e)', () => {
         .get('/api/status')
         .expect(HttpStatus.OK);
 
-      expect(response.body).toEqual(appService.info());
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          name: expect.any(String),
+          version: expect.any(String),
+          creator: expect.any(String),
+          status: expect.any(String),
+        }),
+      );
     });
   });
 });

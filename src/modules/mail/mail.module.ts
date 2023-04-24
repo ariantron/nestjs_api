@@ -11,8 +11,6 @@ import { join } from 'path';
       transport: {
         host: configuration().MAIL_HOST,
         port: configuration().MAIL_PORT,
-        ignoreTLS: configuration().MAIL_IGNORE_TLS,
-        secure: configuration().MAIL_SECURE,
         auth: {
           user: configuration().MAIL_USERNAME,
           pass: configuration().MAIL_PASSWORD,
