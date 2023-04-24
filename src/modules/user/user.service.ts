@@ -107,7 +107,9 @@ export class UserService {
         const avatarUrl = res.data.data.avatar;
         return downloadFile(avatarUrl, 'downloads')
           .then(async (imageFilePath) => {
-            const image = fs.readFileSync(imageFilePath, 'base64');
+            const image: string = fs.readFileSync(imageFilePath, {
+              encoding: 'base64',
+            });
             await this.imageService.save(id, image);
             return successResponse('User avatar received successfully!', {
               userId: id,
