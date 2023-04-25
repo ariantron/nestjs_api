@@ -72,6 +72,8 @@ In this API, which is called with the Get method, the user id parameter is recei
 Delete user Avatar:
 In this API, which is called with the Delete method, the user id parameter is received from the URL, and the file related to the user's avatar image and its record are deleted in the database, and this is announced in the API response.
 
+The end to end (e-2-e) tests are in the test folder, and the unit tests are written in the app.controller.spec and user.controller.spec.ts files at the address's "src/modules/user" and "src/modules/app" respectively.
+
 The project's private information is stored in the .env file, whose template is .env.example. The project database is provided through the MongoDB Atlas cloud service, the RabbitMQ service through cloudamqp.com and the email SMTP server from the mailtrap.io website. The postman collection file named "postman_collection.json" is placed in the project.
 
 
